@@ -203,7 +203,7 @@ function handleOrientation(event) {
 
   if(alternateControl) {
   	x *= -1;
-  	speedLimit = 10;
+  	speedLimit = 20;
   }
 
   
@@ -224,8 +224,8 @@ function handleOrientation(event) {
   }
 
   if(alternateControl) {
-  	x = x/2;
-  	y = y/2;
+  	x = x/3;
+  	y = y/3;
   }
 
   if($('#stopwatch').is(":visible")) {

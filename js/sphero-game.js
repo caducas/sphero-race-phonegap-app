@@ -197,7 +197,6 @@ function fibreTunnelActive(tunnelId) {
 	sendMeantimesToOtherPlayer();
 
 	if(meantimes.length >= 4) {
-		deactivateAlternateControl();
 		raceFinished();
 	}
 
@@ -456,6 +455,7 @@ function deactivateAlternateControl() {
 }
 
 function stopSphero() {
+	deactivateAlternateControl();
 	socket.emit('stopSphero');
 }
 
