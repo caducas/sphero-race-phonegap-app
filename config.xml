@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "at.fh-joanneum.dmt.spherocontrol"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+        <name>PhoneGap Example to test PGB</name>
+
+        <description>
+            An example for phonegap build. 
+        </description>
+
+        <author email="nikolaus@famkofler.com">
+            Nikolaus Kofler
+        </author>
+
+    	<access origin="http://10.0.0.189" subdomains="true" browserOnly="false" />
+        <access origin="http://192.168.42.1" subdomains="true" browserOnly="false" />
+        <preference name="Fullscreen" value="true" />
+        <gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" overwrite="true">
+            <array>
+                <string>UIInterfaceOrientationLandscapeRight</string>
+            </array>
+        </gap:config-file>
+
+        <gap:config-file platform="ios" parent="UISupportedInterfaceOrientations~ipad" overwrite="true">
+            <array>
+                <string>UIInterfaceOrientationLandscapeRight</string>
+            </array>
+        </gap:config-file>
+
+    </widget>

@@ -1,0 +1,30 @@
+
+div.mainInfo {
+	position: absolute;
+	bottom: 50%;
+	left: 10%;
+	width: 80%;
+}
+
+div.mainInfo > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 10vh;
+}
+
+div.loadingCircle {
+	display: block;
+	background-image: url(loading_circle.gif);
+	width: 15vh;
+	height: 15vh;
+	background-repeat: no-repeat;
+	background-size: 90%;
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	opacity: 0.5;
+	margin-left: -7vh;
+}

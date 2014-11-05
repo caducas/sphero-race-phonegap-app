@@ -1,0 +1,440 @@
+
+div.bordered {
+	box-shadow: 0 0 3px gray; 
+	border: 10px solid #cfdcec;
+}
+
+div.selectSpheroButton {
+	width: 20%;
+	position: absolute;
+	bottom: 10%;
+}
+
+div.selectSpheroButtonLeft {
+	left: 5%;
+}
+
+div.selectSpheroButtonRight {
+	left: 75%;
+}
+
+div.roundButton {
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+	background: #4679BD;
+}
+
+div.roundButton > span {
+	display: block;
+	color: #fff;
+	padding-top: 50%;
+	padding-bottom: 50%;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 2em;
+	margin-top: -4vh;
+}
+
+div.settingsButton {
+	background-image: url(../img/cog.png);
+	background-repeat: no-repeat;
+	height: 15vh;
+	width: 15vh;
+	background-size: 100%;
+	position: absolute;
+	left: 50%;
+	top: 80%;
+	margin-left: -10vh;
+	opacity: 0.2;
+}
+
+div.gameTitle {
+	position: absolute;
+	top: 10%;
+	left: 0;
+	width: 100%;
+}
+
+div.gameTitle > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 12vh;
+}
+
+div.defaultButton {
+	background-color: #4679BD;
+	height: 10vh;
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 5vh;
+	padding-top: 4vh;
+}
+
+div.defaultButton > span {
+	width: 100%;
+	display: block;
+	color: #fff;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 4vh;
+	height: 10vh;
+}
+
+div.backButton {
+	background-image: url(../img/left-arrow.png);
+	background-repeat: no-repeat;
+	width: 15vh;
+	height: 15vh;
+	background-size: 100%;
+	position: absolute;
+	bottom: 5vh;
+	left: 5vh;
+	opacity: 0.2;
+}
+
+div.againButton {
+	background-image: url(../img/repeat.png);
+	background-repeat: no-repeat;
+	width: 15vh;
+	height: 15vh;
+	background-size: 100%;
+	position: absolute;
+	bottom: 5vh;
+	right: 5vh;
+	opacity: 0.2;
+}
+
+div.mainInfo {
+	position: absolute;
+	bottom: 50%;
+	left: 10%;
+	width: 80%;
+}
+
+div.mainInfo > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 10vh;
+}
+
+div.additionalInfo {
+	position: absolute;
+	bottom: 30%;
+	left: 10%;
+	width: 80%;
+}
+
+div.additionalInfo > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 5vh;
+}
+
+div.dialogButton {
+	bottom: 5%;
+	position: absolute;
+	margin-top: 0;
+	margin-left: 0;
+	left: 25%;
+}
+
+div.loadingCircle {
+	display: block;
+	background-image: url(../img/loading_circle.gif);
+	width: 15vh;
+	height: 15vh;
+	background-repeat: no-repeat;
+	background-size: 90%;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	opacity: 0.5;
+	margin-left: -7vh;
+}
+
+div.checkedSymbol {
+	background-image: url(../img/checked.png);
+	width: 30vh;
+	height: 30vh;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: absolute;
+	left: 50%;
+	top: 30vh;
+	opacity: 0.1;
+	margin-left: -15vh;
+}
+
+.countdown {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-size: 50vh;
+	color: #4679BD;
+	text-align: center;
+	display: table;
+}
+
+.countdown > span {
+	display: table-cell;
+	vertical-align: middle;
+	font-family: helvetica;
+	font-weight: bold;
+}
+
+.stopwatch {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 30vh;
+	color: #4679BD;
+	text-align: center;
+	display: table;
+	font-family: helvetica;
+}
+
+.times {
+	position: absolute;
+	left: 0;
+	top: 40%;
+	width: 100%;
+}
+
+.meantime {
+	font-family: helvetica;
+}
+
+.meantime_own {
+	display: inline-block;
+	text-align: right;
+	width: 50%;
+	color: #000;
+	font-size: 10vh;
+	margin-bottom: 2vh;
+	opacity: 0.3;
+}
+
+.meantime_difference {
+	display: inline-block;
+	text-align: left;
+	font-size: 7vh;
+	margin-left: 5vh;
+}
+
+.behind {
+	color: #f00;
+}
+
+.ahead {
+	color: #0f0;
+}
+
+div.gameResult {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	top: 10%;
+}
+
+div.gameResult > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 12vh;
+}
+
+div.gameResultTime {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	top: 30vh;
+}
+
+div.gameResultTime > span {
+	display: block;
+	text-align: center;
+	font-family: verdana;
+	font-size: 6vh;
+	opacity: 0.5;
+}
+
+div.gameResultButtonMeantime {
+	position: absolute;
+	top: 55%;
+	position: absolute;
+	top: 55%;
+	margin-left: -10px;
+	left: 25%;
+}
+
+div.meantimeStatistics {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 60%;
+}
+
+div.meantimeStatistics > table {
+	font-family: verdana;
+	font-size: 4vh;
+	text-align: center;
+	border-collapse: collapse;
+	width: 100%;
+	height: 100%;
+}
+
+div.meantimeStatistics > table > thead {
+	color: #fff;
+	background-color: #4679BD;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 4vh;
+}
+
+div.meantimeStatistics > table > thead > tr > td {
+	padding: 2vh 2vh 2vh 2vh;
+}
+
+div.meantimeStatistics > table > tbody > tr > td {
+	color: #000;
+	opacity: 0.4;
+}
+
+div.meantimeStatistics > table > tbody > tr > td:first-child {
+    opacity: 0.7;
+}
+
+div.meantimeStatistics > table > tbody > tr > td.behind {
+	color: #f00;
+}
+
+div.meantimeStatistics > table > tbody > tr > td.ahead {
+	color: #0f0;
+}
+
+div.quizQuestion {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+}
+
+div.quizQuestion > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 5vh;
+}
+
+div.quizAnswers {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	width: 100%;
+	height: 50%;
+}
+
+div.leftAnswerButton,
+div.rightAnswerButton {
+	width: 40%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+div.leftAnswerButton {
+	margin-left: 5%;
+	float: left;
+}
+
+div.rightAnswerButton {
+	margin-right: 5%;
+	float: right;
+}
+
+div.wrong {
+	background-color: #f00;
+}
+
+div.quizResultAllCorrect {
+	position: absolute;
+	bottom: 50%;
+	left: 10%;
+	width: 80%;
+}
+
+div.quizResultAllCorrect > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 15vh;
+}
+
+div.quizResultWrongAnswers {
+	position: absolute;
+	bottom: 70%;
+	left: 10%;
+	width: 80%;
+}
+
+div.quizResultWrongAnswers > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 10vh;
+}
+
+div.quizResultWrongAnswersDetail {
+	position: absolute;
+	bottom: 60%;
+	left: 10%;
+	width: 80%;
+}
+
+div.quizResultWrongAnswersDetail > span {
+	display: block;
+	color: #4679BD;
+	text-align: center;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 5vh;
+}
+
+div.quizResultCountdown {
+	position: absolute;
+	width: 100%;
+	font-size: 40vh;
+	color: #4679BD;
+	text-align: center;
+	display: table;
+	top: 40%;
+}
+
+div.quizResultCountdown > span {
+	font-family: helvetica;
+	font-weight: bold;
+}
