@@ -179,14 +179,14 @@ function fibreTunnelActive(tunnelId) {
 
 	if(tunnelId == 1 && meantimes.length == 0) {
 		setTimeout(function() {
-			loadQuiz('Rechenaufgaben');
+			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');
 		}, 1000);
 	}
 
 	if(tunnelId == 2 && meantimes.length == 1) {
 		// startQuiz('Rätsel');
 		setTimeout(function() {
-			loadQuiz('Rätsel');
+			loadQuiz('Raetsel', 'R&auml;tsel');
 		}, 1000);
 	}
 
@@ -288,12 +288,12 @@ function goToGameResultArea() {
 	$('#gameResultScreen').show();
 }
 
-function loadQuiz(nameOfQuiz) {
+function loadQuiz(nameOfQuiz, htmlNameOfQuiz) {
 	quizQuestionCounter = 0;
 	quizAnswersWrongCounter = 0;
 	hideAll();
 	$('#gameInfo').empty();
-	$('#gameInfo').append('<span>'+nameOfQuiz+'</span>');
+	$('#gameInfo').append('<span>'+htmlNameOfQuiz+'</span>');
 	$('#gameInfoScreen').show();
 	//show loading area "loading quiz"
 	socket.emit('loadQuiz', nameOfQuiz);
