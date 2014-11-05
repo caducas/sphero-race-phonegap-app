@@ -2,17 +2,8 @@
 // 	'reconnection': true,
 // 	'reconnectionDelay': 500,
 // 	'reconnectionDelayMax': 1000});
-var socket = io('http://10.0.0.189:4000');
-  // socket.on('connect', function(){
-  //   socket.on('event', function(data){});
-  //   socket.on('disconnect', function(){});
-  // });
-
-
-// var socket2 = io('http://10.0.0.189:4000').connect();
-// socket2.on('connect', function(){
-// 	console.log('connected');
-// });
+// var socket = io('http://10.0.0.189:4000');
+var socket = io('http://192.168.42.1:4000');
 var selectPlayerTimeout;
 
 goToHomeArea();
