@@ -7,7 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 
-        <name>PhoneGap Example to test PGB</name>
+        <name>Sphero-Race</name>
 
         <description>
             An example for phonegap build. 
