@@ -323,7 +323,6 @@ function setQuizQuestion(questionContainer) {
 
 function quizAnswer(buttonPressed) {
 	var answerText = buttonPressed[0].textContent;
-	alert('answered with text:'+answerText);
 	if(answerText != quizQuestions[quizQuestionCounter].correctAnswer) {
 		quizAnswersWrongCounter++;
 		buttonPressed.addClass('wrong');
@@ -484,25 +483,21 @@ $('#gameResultAgain').bind('click', function() {
 });
 
 $('#btnAnswer1').bind('click', function() {
-	alert('answered 1');
     var $this = $(this);
 	quizAnswer($this);
 });
 
 $('#btnAnswer2').bind('click', function() {
-	alert('answered 2');
     var $this = $(this);
 	quizAnswer($this);
 });
 
 $('#btnAnswer3').bind('click', function() {
-	alert('answered 3');
     var $this = $(this);
 	quizAnswer($this);
 });
 
 $('#btnAnswer4').bind('click', function() {
-	alert('answered 4');
     var $this = $(this);
 	quizAnswer($this);
 });
