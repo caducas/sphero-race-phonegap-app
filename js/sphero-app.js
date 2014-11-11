@@ -81,7 +81,7 @@ function selectDevice(deviceNumber) {
 	}
 
 	if(deviceNumber == 2) {
-		$('#additionalInfo').append('<span>Warte auf zweiten Spieler<br />Du steuerst den <span style="color: #f00">gr&uuml;nen</span> Sphero</span>');
+		$('#additionalInfo').append('<span>Warte auf zweiten Spieler<br />Du steuerst den <span style="color: #0f0">gr&uuml;nen</span> Sphero</span>');
 	}
 
 

@@ -120,10 +120,13 @@ function refreshCountdown() {
 	$('#countdownTimer').show();
 	$('#countdownTimer').append(countdown);
 	$('#countdownTimer').fadeOut(900);
+	document.getElementById('sound_beep_short').play();
+
 }
 
 function startStopWatch() {
 	$('#stopwatch').show();
+	document.getElementById('sound_beep_high').play();
 	offset = Date.now();
 	stopWatchInterval = setInterval(updateStopWatch, 1);
 }
@@ -181,7 +184,7 @@ function fibreTunnelActive(tunnelId) {
 		}, 1000);
 	}
 
-	if(tunnelId == 2 && meantimes.length == 1) {
+	if(tunnelId == 3 && meantimes.length == 2) {
 		// startQuiz('Rätsel');
 		setTimeout(function() {
 			loadQuiz('Raetsel', 'R&auml;tsel');
@@ -199,7 +202,7 @@ function fibreTunnelActive(tunnelId) {
 	}
 
 	showMeantimes();
-	if(tunnelId == 3) {
+	if(tunnelId == 2) {
 		activateAlternateControl();
 	}
 }
@@ -336,8 +339,10 @@ function quizAnswer(buttonPressed) {
 	if(answerText != quizQuestions[quizQuestionCounter].correctAnswer) {
 		quizAnswersWrongCounter++;
 		buttonPressed.addClass('wrong');
+		document.getElementById('sound_wrong').play();
 		return;
 	}
+	document.getElementById('sound_correct').play();
 	if(quizQuestionCounter>=3) {
 		//continue race with delay (depending on wrong answers)
 		hideAll();
