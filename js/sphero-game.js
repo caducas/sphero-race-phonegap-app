@@ -205,7 +205,7 @@ function fibreTunnelActive(tunnelId) {
 	}
 
 	showMeantimes();
-	if(tunnelId == 2) {
+	if(tunnelId == 2 && meantimes.length == 1) {
 		activateAlternateControl();
 	}
 }
