@@ -83,7 +83,6 @@ function hideAll() {
 	$('#connectSpherosRunningScreen').hide();
 	$('#calibrateSphero1Screen').hide();
 	$('#calibrateSphero2Screen').hide();
-	$('#whiteBalanceScreen').hide();
 	$('#gameResultScreen').hide();
 	$('#gameMeantimesScreen').hide();
 	$('#gameQuizScreen').hide();
@@ -111,16 +110,6 @@ function goToSettingsArea() {
 	$('#settingsScreen').show();
 }
 
-function goToWhiteBalanceArea() {
-	hideAll();
-	$('#whiteBalanceScreen').show();
-	$('#whiteBalanceRunningInformation').hide();
-	$('#whiteBalanceFinished').hide();
-	$('#whiteBalanceRunningAnimation').hide();
-	$('#whiteBalanceCheckedSymbol').hide();
-	$('#whiteBalanceStartInformation').show();
-	$('#btnStartWhiteBalance').show();
-}
 
 function goToConnectSpherosArea() {
 	hideAll();
@@ -146,27 +135,6 @@ function stopConnectingSpheros() {
 	hideAll();
 	socket.emit('connectSpherosStop');
 	$('#connectSpherosScreen').show();
-}
-
-function startWhiteBalance() {
-	$('#whiteBalanceStartInformation').hide();
-	$('#btnStartWhiteBalance').hide();
-	$('#whiteBalanceRunningInformation').show();
-	$('#whiteBalanceRunningAnimation').show();
-	$('#btnWhiteBalanceBack').hide();
-	setTimeout(function() {
-		stopWhiteBalance();
-	}, 5000);
-	socket.emit('startWhiteBalance');
-}
-
-function stopWhiteBalance() {
-	socket.emit('stopWhiteBalance');
-	$('#whiteBalanceRunningInformation').hide();
-	$('#whiteBalanceRunningAnimation').hide();
-	$('#whiteBalanceCheckedSymbol').show();
-	$('#btnWhiteBalanceBack').show();
-	$('#whiteBalanceFinished').show();
 }
 
 function goToCalibrateSphero1Area() {
@@ -269,10 +237,6 @@ $('#btnSettings').bind('click', function() {
 	goToSettingsArea();
 });
 
-$('#btnWhiteBalance').bind('click', function() {
-	goToWhiteBalanceArea();
-});
-
 $('#btnConnectSpheros').bind('click', function() {
 	goToConnectSpherosArea();
 });
@@ -309,12 +273,5 @@ $('#btnStopCalibrationSphero2').bind('click', function() {
 	stopCalibrationSphero2();
 });
 
-$('#btnWhiteBalanceBack').bind('click', function() {
-	goToSettingsArea();
-});
-
-$('#btnStartWhiteBalance').bind('click', function() {
-	startWhiteBalance();
-});
 
 window.addEventListener('deviceorientation', handleOrientation);
