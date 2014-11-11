@@ -58,12 +58,10 @@ function resetGame() {
 	stopWatchTime = 0.0
 	meantimes = [];
 	meantimesOpponent = [];
-	$('#meantime_3').empty();
-	$('#meantime_3_difference').empty();
-	$('#meantime_2').empty();
-	$('#meantime_2_difference').empty();
-	$('#meantime_1').empty();
-	$('#meantime_1_difference').empty();
+	for(var i = 1; i<4; i++) {
+		$('#meantime_'+i).empty();
+		$('#meantime_'+i+'_difference').empty();
+	}
 	showMeantimes();
 	$('#stopwatch').hide();
 }
@@ -217,6 +215,17 @@ function sendMeantimesToOtherPlayer() {
 }
 
 function showMeantimes() {
+	for(var i = 0; i<4; i++) {
+		var meantimeNumber = parseInt(i)+1;
+		if(meantimes.length > i) {
+			$('#meantime_'+meantimeNumber).empty();
+			$('#meantime_'+meantimeNumber).append(parseMillisecondsToTimeString(meantimes[i]));
+		} else {
+			$('#meantime_'+meantimeNumber).empty();
+			$('#meantime_'+meantimeNumber).append("-:-:-");
+		}
+
+	}
 	for(var i in meantimes) {
 		var meantimeNumber = parseInt(i)+1;
 		$('#meantime_'+meantimeNumber).empty();
@@ -232,8 +241,10 @@ function showMeantimes() {
 			console.log('will use final time id');
 			objectId = '#final_time_difference';
 		}
+
 		$(objectId).empty();
 		$(objectId).removeClass('behind ahead');
+		
 		if(i<meantimes.length) {
 			var difference = meantimes[i]-meantimesOpponent[i];
 			console.log('difference:');
@@ -441,9 +452,7 @@ function parseMillisecondsToTimeString(milliseconds) {
 function activateAlternateControl() {
 	hideAll();
 	alternateControl = true;
-	$('#gameInfo').empty();
-	$('#gameInfo').append('<span>Steuerung verkehrt!</span>');
-	$('#gameInfoScreen').show();
+	$('#alternateControlScreen').show();
 	setTimeout(function() {
 		hideAll();
 		$('#gameScreen').show();

@@ -23,17 +23,19 @@
 			</div>
 			<div class="selectSpheroButton selectSpheroButtonLeft">
 				<div id="btnDeviceOne" class="roundButton bordered selectSpheroLeft">
-					<span>Spieler 1</span>
+					<span>Spieler Rot</span>
 				</div>
 			</div>
 			<div class="selectSpheroButton selectSpheroButtonRight">
 				<div id="btnDeviceTwo" class="roundButton bordered selectSpheroRight">
-					<span>Spieler 2</span>
+					<span>Spieler Gr&uuml;n</span>
 				</div>
 			</div>
-			<div id="btnSettings" class="settingsButton"></div>
+			<div id="btnConnect" class="connectButton">
+				<span>Connect</span>
+			</div>
 		</div>
-		<div id="gameScreen">
+		<div id="gameScreen" class="gameScreen">
 			<div id="countdown" class="countdown">
 				<span id="countdownTimer">3</span>
 			</div>
@@ -42,22 +44,30 @@
 			</div>
 			<div id="times" class="times">
 				<div class="meantime">
-					<div id="meantime_3" class="meantime_own"></div>
-					<div id="meantime_3_difference" class="meantime_difference"></div>
+					<div class="meantime_description">1.</div>
+					<div id="meantime_1" class="meantime_own"></div>
+					<div id="meantime_1_difference" class="meantime_difference"></div>
 				</div>
 				<div class="meantime">
+					<div class="meantime_description">2.</div>
 					<div id="meantime_2" class="meantime_own"></div>
 					<div id="meantime_2_difference" class="meantime_difference"></div>
 				</div>
 				<div class="meantime">
-					<div id="meantime_1" class="meantime_own"></div>
-					<div id="meantime_1_difference" class="meantime_difference"></div>
+					<div class="meantime_description">3.</div>
+					<div id="meantime_3" class="meantime_own"></div>
+					<div id="meantime_3_difference" class="meantime_difference"></div>
 				</div>
 			</div>
 		</div>
 		<div id="gameInfoScreen">
 			<div id="gameInfo" class="mainInfo">
-				<span>Steuerung verkehrt!</span>
+			</div>
+		</div>
+		<div id="alternateControlScreen">
+			<div class="alternateControlPicture"></div>
+			<div class="mainInfo alternateControlInfo">
+				<span>Links / Rechts vertauscht!</span>
 			</div>
 		</div>
 		<div id="gameQuizScreen">
@@ -132,18 +142,6 @@
 			</div>
 			<div id="gameMeantimesBack" class="backButton"></div>
 		</div>
-		<div id="settingsScreen">
-			<div id="btnConnectSpheros" class="defaultButton bordered">
-				<span>Spheros verbinden</span>
-			</div>
-			<div id="btnCalibrateSphero1" class="defaultButton bordered">
-				<span>Sphero (blau) ausrichten</span>
-			</div>
-			<div id="btnCalibrateSphero2" class="defaultButton bordered">
-				<span>Sphero (rot) ausrichten</span>
-			</div>
-			<div id="btnSettingsBack" class="backButton"></div>
-		</div>
 		<div id="connectSpherosScreen">
 			<div id="connectSpherosStartInformation" class="additionalInfo">
 				<span>Schalte beide Spheros ein (antippen bis sie blinken) und dr&uuml;cke [Start]</span>
@@ -166,16 +164,18 @@
 			</div>
 		</div>
 		<div id="calibrateSphero1Screen">
+			<div id="calibrateSphero1Symbol" class="calibrateSpheroPicture calibrateGreenSpheroPicture"></div>
 			<div class="additionalInfo">
-				<span>Drehe den Sphero am Boden mit dem blauen Licht zu dir und dr&uuml;cke dann [Fertig]</span>
+				<span>Drehe den gr&uuml;nen Sphero am Boden mit dem blauen Licht zu dir und dr&uuml;cke dann [Fertig]</span>
 			</div>
 			<div id="btnStopCalibrationSphero1" class="defaultButton bordered dialogButton">
 				<span>Fertig</span>
 			</div>
 		</div>
 		<div id="calibrateSphero2Screen">
+			<div id="calibrateSphero1Symbol" class="calibrateSpheroPicture calibrateRedSpheroPicture"></div>
 			<div class="additionalInfo">
-				<span>Drehe den Sphero am Boden mit dem blauen Licht zu dir und dr&uuml;cke dann [Fertig]</span>
+				<span>Drehe den roten Sphero am Boden mit dem blauen Licht zu dir und dr&uuml;cke dann [Fertig]</span>
 			</div>
 			<div id="btnStopCalibrationSphero2" class="defaultButton bordered dialogButton">
 				<span>Fertig</span>

@@ -67,10 +67,24 @@ function checkConnectionAndReconnect() {
 function selectDevice(deviceNumber) {
 	socket.emit('selectDevice', deviceNumber);
 	waitingForSelectedPlayerConfirmation();
-	selectPlayerTimeout = setTimeout(function() {
-		console.log('should now select player '+ deviceNumber+' again');
-		selectDevice(deviceNumber);
-	},2000);
+	// selectPlayerTimeout = setTimeout(function() {
+	// 	console.log('should now select player '+ deviceNumber+' again');
+	// 	selectDevice(deviceNumber);
+	// },2000);
+
+	$('#gameScreen').removeClass('sphero1 sphero2');
+	$('#gameScreen').addClass('sphero'+deviceNumber);
+
+	$('#additionalInfo').empty();
+	if(deviceNumber == 1) {
+		$('#additionalInfo').append('<span>Warte auf zweiten Spieler<br />Du steuerst den <span style="color: #f00">roten</span> Sphero</span>');
+	}
+
+	if(deviceNumber == 2) {
+		$('#additionalInfo').append('<span>Warte auf zweiten Spieler<br />Du steuerst den <span style="color: #f00">gr&uuml;nen</span> Sphero</span>');
+	}
+
+
 }
 
 function hideAll() {
@@ -89,6 +103,7 @@ function hideAll() {
 	$('#gameQuizResultCorrectScreen').hide();
 	$('#gameQuizResultWrongScreen').hide();
 	$('#gameInfoScreen').hide();
+	$('#alternateControlScreen').hide();
 }
 
 function goToHomeArea() {
@@ -100,8 +115,8 @@ function goToGameArea() {
 	hideAll();
 	$('#mainInfo').empty();
 	$('#mainInfo').append('<span>Bereit</span>');
-	$('#additionalInfo').empty();
-	$('#additionalInfo').append('<span>Warte auf zweiten Spieler</span>');
+	// $('#additionalInfo').empty();
+	// $('#additionalInfo').append('<span>Warte auf zweiten Spieler</span>');
 	$('#infoScreen').show();
 }
 
@@ -132,9 +147,8 @@ function startConnectingSpheros() {
 }
 
 function stopConnectingSpheros() {
-	hideAll();
 	socket.emit('connectSpherosStop');
-	$('#connectSpherosScreen').show();
+	goToCalibrateSphero1Area();
 }
 
 function goToCalibrateSphero1Area() {
@@ -145,10 +159,9 @@ function goToCalibrateSphero1Area() {
 
 function stopCalibrationSphero1() {
 	if(checkConnectionAndReconnect) {
-		hideAll();
-		socket.emit('calibrateSpheroFinished', 1);
-		$('#settingsScreen').show();		
+		socket.emit('calibrateSpheroFinished', 1);	
 	}
+	goToCalibrateSphero2Area();
 }
 
 function goToCalibrateSphero2Area() {
@@ -158,9 +171,11 @@ function goToCalibrateSphero2Area() {
 }
 
 function stopCalibrationSphero2() {
-	hideAll();
-	socket.emit('calibrateSpheroFinished', 2);
-	$('#settingsScreen').show();
+	if(checkConnectionAndReconnect) {
+		socket.emit('calibrateSpheroFinished', 2);	
+		hideAll();
+		$('#homeScreen').show();
+	}
 }
 
 
@@ -233,11 +248,7 @@ $('#btnDeviceTwo').bind('click', function() {
 	selectDevice(2);
 });
 
-$('#btnSettings').bind('click', function() {
-	goToSettingsArea();
-});
-
-$('#btnConnectSpheros').bind('click', function() {
+$('#btnConnect').bind('click', function() {
 	goToConnectSpherosArea();
 });
 
@@ -249,16 +260,8 @@ $('#btnCalibrateSphero2').bind('click', function() {
 	goToCalibrateSphero2Area();
 });
 
-$('#btnSettingsBack').bind('click', function() {
-	goToHomeArea();
-});
-
 $('#btnFinishConnectSpheros').bind('click', function() {
 	stopConnectingSpheros();
-});
-
-$('#btnConnectSpherosBack').bind('click', function() {
-	goToSettingsArea();
 });
 
 $('#btnStartConnectSpheros').bind('click', function() {
