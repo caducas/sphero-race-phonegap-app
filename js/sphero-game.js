@@ -13,6 +13,9 @@ var quizQuestionCounter = 0;
 var quizMathQuestionCounter = 0;
 var quizAnswersWrongCounter = 0;
 var alternateControl = false;
+var answersActivated = true;
+
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 $(document).ready(function() {
 
@@ -329,17 +332,22 @@ function setQuizQuestion(questionContainer) {
 	for(var i = 0; i<4; i++) {
 		var btnId = '#btnAnswer'+(i+1);
 		$(btnId).empty();
-		$(btnId).removeClass('wrong');
+		$(btnId).removeClass('wrong correct');
 		$(btnId).append('<span>'+answers[i]+'</span>');
 	}
+	activateAnswers();
 }
 
 function quizAnswer(buttonPressed) {
+	if(!answersActivated) {
+		return;
+	}
 	var answerText = buttonPressed[0].textContent;
 	if(answerText != quizQuestions[quizQuestionCounter].correctAnswer) {
 		quizAnswersWrongCounter++;
 		buttonPressed.addClass('wrong');
 		document.getElementById('sound_wrong').play();
+		vibrate(500);
 		return;
 	}
 	document.getElementById('sound_correct').play();
@@ -364,7 +372,20 @@ function quizAnswer(buttonPressed) {
 		return;
 	}
 	quizQuestionCounter++;
-	setQuizQuestion(quizQuestions[quizQuestionCounter]);
+	buttonPressed.addClass('correct');
+	vibrate([200,200,200]);
+	deactivateAnswers();
+	setTimeout(function() {
+		setQuizQuestion(quizQuestions[quizQuestionCounter]);
+	},1000);
+}
+
+function deactivateAnswers() {
+	answersActivated = false;
+}
+
+function activateAnswers() {
+	answersActivated = true;
 }
 
 function startQuizResultCountdown(penalty) {
@@ -471,6 +492,12 @@ function deactivateAlternateControl() {
 function stopSphero() {
 	deactivateAlternateControl();
 	socket.emit('stopSphero');
+}
+
+function vibrate(duration) {
+	if (navigator.vibrate) {
+		navigator.vibrate(duration);
+	}
 }
 
 $('#btnMeantimes').bind('click', function() {
