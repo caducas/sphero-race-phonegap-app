@@ -238,11 +238,11 @@ div.gameScreen {
 }
 
 div.sphero1 {
-	box-shadow: inset 0px 0px 10px 5px #f55;
+	box-shadow: inset 0px 0px 10px 10px #f55;
 }
 
 div.sphero2 {
-	box-shadow: inset 0px 0px 10px 5px #5f5;
+	box-shadow: inset 0px 0px 10px 10px #5f5;
 }
 
 .countdown {
@@ -452,7 +452,7 @@ div.wrong {
 	background-color: #f00;
 }
 
-div.wrong {
+div.correct {
 	background-color: #0f0;
 }
 
