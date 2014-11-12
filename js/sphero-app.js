@@ -6,7 +6,7 @@ var socket = io('http://10.0.0.189:4000');
 // var socket = io('http://192.168.42.1:4000');
 var selectPlayerTimeout;
 
-
+try {
 navigator.notification.alert(
     'You are the winner!',  // message
     function() {alert('ended');
@@ -14,6 +14,10 @@ navigator.notification.alert(
     'Game Over',            // title
     'Done'                  // buttonName
 );
+
+} catch(err) {
+	alert(err);
+}
 
 goToHomeArea();
 
