@@ -98,7 +98,7 @@ function determineGameResult() {
 }
 
 function startCountdown() {
-	countdownInterval = setInterval(updateCountdown, 1000);
+	countdownInterval = setInterval(updateCountdown, 1200);
 	refreshCountdown();
 }
 
@@ -121,7 +121,7 @@ function refreshCountdown() {
 	$('#countdownTimer').empty();
 	$('#countdownTimer').show();
 	$('#countdownTimer').append(countdown);
-	$('#countdownTimer').fadeOut(900);
+	$('#countdownTimer').fadeOut(1100);
 	document.getElementById('sound_beep_short').play();
 
 }
