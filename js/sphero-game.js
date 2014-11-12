@@ -12,10 +12,9 @@ var quizMathQuestions;
 var quizQuestionCounter = 0;
 var quizMathQuestionCounter = 0;
 var quizAnswersWrongCounter = 0;
-var alternateControl = false;
 var answersActivated = true;
+var alternateControl = false;
 
-navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 $(document).ready(function() {
 
@@ -135,6 +134,9 @@ function startStopWatch() {
 }
 
 function updateStopWatch() {
+	if(meantimes.length >=4) {
+		return;
+	}
 	calculateTime();
 	refreshStopWatch();
 }
@@ -189,6 +191,7 @@ function fibreTunnelActive(tunnelId) {
 
 	if(tunnelId == 3 && meantimes.length == 2) {
 		// startQuiz('Rätsel');
+		deactivateAlternateControl();
 		setTimeout(function() {
 			loadQuiz('Raetsel', 'R&auml;tsel');
 		}, 1000);
@@ -351,38 +354,43 @@ function quizAnswer(buttonPressed) {
 		deactivateAnswers();
 		setTimeout(function() {
 			activateAnswers();
-		},1000);
+		},500);
 		vibrate(500);
 		return;
 	}
 	document.getElementById('sound_correct').play();
-	if(quizQuestionCounter>=3) {
-		//continue race with delay (depending on wrong answers)
-		hideAll();
-		if(quizAnswersWrongCounter == 0) {
-			$('#gameQuizResultCorrectScreen').show();
-			setTimeout(function() {
-				continueRace();
-			},1000);
-			return;	
-		}
-
-		var penalty = quizAnswersWrongCounter*3;
-		$('#gameQuizResultWrongScreen').show();
-		$('#quizResultWrongAnswers').empty();
-		$('#quizResultWrongAnswers').append('<span>'+quizAnswersWrongCounter+' Falsche!</span>');
-		$('#quizResultWrongAnswersDetail').empty();
-		$('#quizResultWrongAnswersDetail').append('<span>Du musst '+penalty+' Sekunden warten</span>');
-		startQuizResultCountdown(penalty);
-		return;
-	}
-	quizQuestionCounter++;
 	buttonPressed.addClass('correct');
 	vibrate([200,200,200]);
 	deactivateAnswers();
+
+	if(quizQuestionCounter>=3) {
+		//continue race with delay (depending on wrong answers)
+		setTimeout(function() {
+			hideAll();
+			if(quizAnswersWrongCounter == 0) {
+				$('#gameQuizResultCorrectScreen').show();
+				setTimeout(function() {
+					continueRace();
+				},1000);
+				return;	
+			}
+
+			var penalty = quizAnswersWrongCounter*3;
+			$('#gameQuizResultWrongScreen').show();
+			$('#quizResultWrongAnswers').empty();
+			$('#quizResultWrongAnswers').append('<span>'+quizAnswersWrongCounter+' Falsche!</span>');
+			$('#quizResultWrongAnswersDetail').empty();
+			$('#quizResultWrongAnswersDetail').append('<span>Du musst '+penalty+' Sekunden warten</span>');
+			startQuizResultCountdown(penalty);
+		}, 2000);
+		return;
+	}
+
+	quizQuestionCounter++;
+
 	setTimeout(function() {
 		setQuizQuestion(quizQuestions[quizQuestionCounter]);
-	},1000);
+	},2000);
 }
 
 function deactivateAnswers() {
@@ -481,6 +489,8 @@ function parseMillisecondsToTimeString(milliseconds) {
 }
 
 function activateAlternateControl() {
+	$('#alternateControlPicture').show();
+	$('#times').hide();
 	hideAll();
 	alternateControl = true;
 	$('#alternateControlScreen').show();
@@ -492,18 +502,19 @@ function activateAlternateControl() {
 
 function deactivateAlternateControl() {
 	alternateControl = false;
+	console.log('alternate control should be deactivated');
+	$('#alternateControlPicture').hide();
+	$('#times').show();
 }
 
 function stopSphero() {
-	deactivateAlternateControl();
 	socket.emit('stopSphero');
 }
 
 function vibrate(duration) {
-	navigator.notification.vibrate(duration);
-	// if (navigator.vibrate) {
-	// 	navigator.vibrate(duration);
-	// }
+	if(navigator.notification && navigator.nofitication.vibrate) {
+		navigator.notification.vibrate(duration);
+	}
 }
 
 $('#btnMeantimes').bind('click', function() {

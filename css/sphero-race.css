@@ -215,7 +215,7 @@ div.calibrateRedSpheroPicture {
 }
 
 div.alternateControlInfo {
-	top: 70%;
+	top: 10%;
 }
 
 div.alternateControlPicture {
@@ -225,7 +225,7 @@ div.alternateControlPicture {
 	background-size: 100%;
 	position: absolute;
 	left: 15%;
-	top: 10%;
+	top: 40%;
 	background-image: url(../img/sphero_steering_changed.png);	
 }
 
