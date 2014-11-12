@@ -7,13 +7,7 @@ var socket = io('http://10.0.0.189:4000');
 var selectPlayerTimeout;
 
 try {
-navigator.notification.alert(
-    'You are the winner!',  // message
-    function() {alert('ended');
-    },         // callback
-    'Game Over',            // title
-    'Done'                  // buttonName
-);
+navigator.notification.vibrate(1000);
 
 } catch(err) {
 	alert(err);
