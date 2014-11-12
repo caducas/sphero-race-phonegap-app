@@ -279,11 +279,3 @@ $('#btnStopCalibrationSphero2').bind('click', function() {
 
 
 window.addEventListener('deviceorientation', handleOrientation);
-
-	alert("should now vibrate");
-	try {
-	navigator.notification.vibrate(1000);
-
-	} catch(err) {
-		alert(err);
-	}
