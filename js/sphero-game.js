@@ -348,11 +348,11 @@ function quizAnswer(buttonPressed) {
 		quizAnswersWrongCounter++;
 		buttonPressed.addClass('wrong');
 		document.getElementById('sound_wrong').play();
-		vibrate(500);
 		deactivateAnswers();
 		setTimeout(function() {
 			activateAnswers();
 		},1000);
+		vibrate(500);
 		return;
 	}
 	document.getElementById('sound_correct').play();
