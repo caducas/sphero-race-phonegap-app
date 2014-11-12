@@ -205,7 +205,8 @@ function fibreTunnelActive(tunnelId) {
 	}
 
 	showMeantimes();
-	if(tunnelId == 2 && meantimes.length == 1) {
+
+	if(tunnelId == 2 && meantimes.length == 2) {
 		activateAlternateControl();
 	}
 }
@@ -348,6 +349,10 @@ function quizAnswer(buttonPressed) {
 		buttonPressed.addClass('wrong');
 		document.getElementById('sound_wrong').play();
 		vibrate(500);
+		deactivateAnswers();
+		setTimeout(function() {
+			activateAnswers();
+		},1000);
 		return;
 	}
 	document.getElementById('sound_correct').play();
@@ -495,9 +500,10 @@ function stopSphero() {
 }
 
 function vibrate(duration) {
-	if (navigator.vibrate) {
-		navigator.vibrate(duration);
-	}
+	navigator.notification.vibrate(duration);
+	// if (navigator.vibrate) {
+	// 	navigator.vibrate(duration);
+	// }
 }
 
 $('#btnMeantimes').bind('click', function() {
