@@ -8,6 +8,8 @@ var selectPlayerTimeout;
 
 
 goToHomeArea();
+$('#btnDeviceOne').hide();
+$('#btnDeviceTwo').hide();
 
 // socket.on('error', function(){
 // 	alert('should reconnect');
@@ -28,6 +30,7 @@ socket.on('disconnect', function() {
 	// socket.socket.connect();
 	// socket = io.connect();
 });
+
 
 
 // function getTime() {
@@ -240,6 +243,23 @@ socket.on('startGame', function() {
 	prepareGame();
 });
 
+socket.on('deviceSelected', function(deviceNumber) {
+	if(deviceNumber==1) {
+		$('#btnDeviceOne').hide();
+	}
+	if(deviceNumber==2) {
+		$('#btnDeviceTwo').hide();
+	}
+});
+
+socket.on('deviceAvailable', function(deviceNumber) {
+	if(deviceNumber==1) {
+		$('#btnDeviceOne').show();		
+	}
+	if(deviceNumber==2) {
+		$('#btnDeviceTwo').show();		
+	}
+});
 
 $('#btnDeviceOne').bind('click', function() {
 	selectDevice(1);
@@ -279,3 +299,4 @@ $('#btnStopCalibrationSphero2').bind('click', function() {
 
 
 window.addEventListener('deviceorientation', handleOrientation);
+

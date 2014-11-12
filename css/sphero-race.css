@@ -526,3 +526,11 @@ div.selectSpheroLeft {
 div.selectSpheroRight {
 	background: #0f0;
 }
+
+div.selectSpheroSelected {
+	opacity: 0.1;
+}
+
+div.selectSpheroSelected > span {
+	font-size: 4vh;
+}
