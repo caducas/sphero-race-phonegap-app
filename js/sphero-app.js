@@ -6,6 +6,15 @@
 var socket = io('http://192.168.42.1:4000');
 var selectPlayerTimeout;
 
+
+navigator.notification.alert(
+    'You are the winner!',  // message
+    function() {alert('ended');
+    },         // callback
+    'Game Over',            // title
+    'Done'                  // buttonName
+);
+
 goToHomeArea();
 
 // socket.on('error', function(){
