@@ -7,19 +7,6 @@ var socket = io('http://10.0.0.189:4000');
 var selectPlayerTimeout;
 
 
-function testVibrate() {
-
-	alert("should now vibrate");
-	try {
-	navigator.notification.vibrate(1000);
-
-	} catch(err) {
-		alert(err);
-	}
-}
-
-document.addEventListener("deviceready", testVibrate, false);
-
 goToHomeArea();
 
 // socket.on('error', function(){
@@ -292,3 +279,11 @@ $('#btnStopCalibrationSphero2').bind('click', function() {
 
 
 window.addEventListener('deviceorientation', handleOrientation);
+
+	alert("should now vibrate");
+	try {
+	navigator.notification.vibrate(1000);
+
+	} catch(err) {
+		alert(err);
+	}
