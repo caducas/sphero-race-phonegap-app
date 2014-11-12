@@ -184,6 +184,7 @@ function fibreTunnelActive(tunnelId) {
 	tunnelId = parseInt(tunnelId);
 
 	if(tunnelId == 1 && meantimes.length == 0) {
+		document.getElementById('sound_beep_short').play();
 		setTimeout(function() {
 			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');
 		}, 1000);
@@ -192,6 +193,7 @@ function fibreTunnelActive(tunnelId) {
 	if(tunnelId == 3 && meantimes.length == 2) {
 		// startQuiz('Rätsel');
 		deactivateAlternateControl();
+		document.getElementById('sound_beep_short').play();
 		setTimeout(function() {
 			loadQuiz('Raetsel', 'R&auml;tsel');
 		}, 1000);
@@ -204,12 +206,14 @@ function fibreTunnelActive(tunnelId) {
 	sendMeantimesToOtherPlayer();
 
 	if(meantimes.length >= 4) {
+		document.getElementById('sound_beep_high').play();
 		raceFinished();
 	}
 
 	showMeantimes();
 
 	if(tunnelId == 2 && meantimes.length == 2) {
+		document.getElementById('sound_beep_short').play();
 		activateAlternateControl();
 	}
 }
