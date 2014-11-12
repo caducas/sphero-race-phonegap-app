@@ -18,7 +18,7 @@ function testVibrate() {
 	}
 }
 
-document.addEventListener("deviceready", testVibrate);
+document.addEventListener("deviceready", testVibrate, false);
 
 goToHomeArea();
 
