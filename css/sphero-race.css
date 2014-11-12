@@ -207,11 +207,11 @@ div.calibrateSpheroPicture {
 }
 
 div.calibrateGreenSpheroPicture {
-	background-image: url(../img/calibrate_sphero_green.png);
+	background-image: url(../img/calibrate_sphero_red.png);
 }
 
 div.calibrateRedSpheroPicture {
-	background-image: url(../img/calibrate_sphero_red.png);
+	background-image: url(../img/calibrate_sphero_green.png);
 }
 
 div.alternateControlInfo {
