@@ -6,12 +6,19 @@ var socket = io('http://10.0.0.189:4000');
 // var socket = io('http://192.168.42.1:4000');
 var selectPlayerTimeout;
 
-try {
-navigator.notification.vibrate(1000);
 
-} catch(err) {
-	alert(err);
+function testVibrate() {
+
+	alert("should now vibrate");
+	try {
+	navigator.notification.vibrate(1000);
+
+	} catch(err) {
+		alert(err);
+	}
 }
+
+document.addEventListener("deviceready", testVibrate);
 
 goToHomeArea();
 
