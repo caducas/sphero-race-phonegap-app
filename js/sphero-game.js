@@ -7,6 +7,7 @@ var offset;
 var stopWatchTime = 0.0;
 var meantimes = [];
 var meantimesOpponent = [];
+var questCounter = 0;
 var quizQuestions;
 var quizMathQuestions;
 var quizQuestionCounter = 0;
@@ -15,6 +16,7 @@ var quizAnswersWrongCounter = 0;
 var answersActivated = true;
 var alternateControl = false;
 var spheroControlActive = false;
+var fibreTunnelTimeout;
 
 
 $(document).ready(function() {
@@ -29,6 +31,10 @@ $(document).ready(function() {
 		console.log(data);
 		if(data.command === 'fibreTunnelActive') {
 			fibreTunnelActive(data.commandData.fibreTunnelId);
+		}
+
+		if(data.command === 'fibreTunnelLeft') {
+			fibreTunnelLeft(data.commandData.fibreTunnelId);
 		}
 
 		if(data.command === 'meantimesOpponent') {
@@ -59,6 +65,7 @@ function startGame() {
 function resetGame() {
 	countdown = 3;
 	stopWatchTime = 0.0
+	questCounter = 0;
 	meantimes = [];
 	meantimesOpponent = [];
 	for(var i = 1; i<4; i++) {
@@ -74,7 +81,7 @@ function raceFinished() {
 	determineGameResult();
 	setTimeout(function() {
 		stopSphero();
-	},1000);
+	},200);
 }
 
 function determineGameResult() {
@@ -183,22 +190,22 @@ function refreshStopWatch() {
 
 function fibreTunnelActive(tunnelId) {
 
+	clearTimeout(fibreTunnelTimeout);
+
 	tunnelId = parseInt(tunnelId);
 
 	if(tunnelId == 1 && meantimes.length == 0) {
 		document.getElementById('sound_beep_short').play();
-		setTimeout(function() {
-			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');
-		}, 1000);
+	}
+
+	if(tunnelId == 2 && meantimes.length == 1) {
+		document.getElementById('sound_beep_short').play();
 	}
 
 	if(tunnelId == 3 && meantimes.length == 2) {
 		// startQuiz('Rätsel');
 		deactivateAlternateControl();
 		document.getElementById('sound_beep_short').play();
-		setTimeout(function() {
-			loadQuiz('Raetsel', 'R&auml;tsel');
-		}, 1000);
 	}
 
 	if(tunnelId-1 == meantimes.length) {
@@ -209,15 +216,29 @@ function fibreTunnelActive(tunnelId) {
 
 	if(meantimes.length >= 4) {
 		document.getElementById('sound_beep_high').play();
-		raceFinished();
 	}
 
 	showMeantimes();
+}
 
-	if(tunnelId == 2 && meantimes.length == 2) {
-		document.getElementById('sound_beep_short').play();
-		activateAlternateControl();
-	}
+function fibreTunnelLeft(tunnelId) {
+	fibreTunnelTimeout = setTimeout(function(tunnelId) {
+		if(tunnelId == 1 && questCounter == 0) {
+			questCounter++;
+			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');			
+		}
+		if(tunnelId == 2 && questCounter == 1) {
+			questCounter++;
+			activateAlternateControl();			
+		}
+		if(tunnelId == 3 && questCounter == 2) {
+			questCounter++;
+			loadQuiz('Raetsel', 'R&auml;tsel');			
+		}
+		if(meantimes.length >= 4) {
+			raceFinished();
+		}
+	}, 200);
 }
 
 function sendMeantimesToOtherPlayer() {
@@ -495,6 +516,7 @@ function parseMillisecondsToTimeString(milliseconds) {
 }
 
 function activateAlternateControl() {
+	stopSphero();
 	$('#alternateControlPicture').show();
 	$('#times').hide();
 	hideAll();
