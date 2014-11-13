@@ -238,7 +238,7 @@ function fibreTunnelLeft(tunnelId) {
 		if(meantimes.length >= 4) {
 			raceFinished();
 		}
-	}, 200);
+	}, 500);
 }
 
 function sendMeantimesToOtherPlayer() {
