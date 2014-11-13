@@ -215,7 +215,7 @@ function handleOrientation(event) {
   	y = y/3;
   }
 
-  if($('#stopwatch').is(":visible")) {
+  if($('#stopwatch').is(":visible") && spheroControlActive === true) {
   	socket.emit('control', getDirection(x,y), getSpeed(x,y));
   }
 }

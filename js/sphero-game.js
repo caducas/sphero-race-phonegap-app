@@ -14,6 +14,7 @@ var quizMathQuestionCounter = 0;
 var quizAnswersWrongCounter = 0;
 var answersActivated = true;
 var alternateControl = false;
+var spheroControlActive = false;
 
 
 $(document).ready(function() {
@@ -108,6 +109,7 @@ function updateCountdown() {
 		refreshCountdown();
 	} else {
 		stopCountdown();
+		spheroControlActive = true;
 		startStopWatch();
 	}
 }
@@ -501,7 +503,7 @@ function activateAlternateControl() {
 	setTimeout(function() {
 		hideAll();
 		$('#gameScreen').show();
-	},2000);
+	},5000);
 }
 
 function deactivateAlternateControl() {
@@ -512,6 +514,7 @@ function deactivateAlternateControl() {
 }
 
 function stopSphero() {
+	spheroControlActive = false;
 	socket.emit('stopSphero');
 }
 
