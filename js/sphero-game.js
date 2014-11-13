@@ -525,6 +525,7 @@ function activateAlternateControl() {
 	setTimeout(function() {
 		hideAll();
 		$('#gameScreen').show();
+		spheroControlActive = true;
 	},5000);
 }
 
