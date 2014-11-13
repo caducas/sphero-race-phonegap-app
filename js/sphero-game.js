@@ -222,7 +222,7 @@ function fibreTunnelActive(tunnelId) {
 }
 
 function fibreTunnelLeft(tunnelId) {
-	fibreTunnelTimeout = setTimeout(function(tunnelId) {
+	fibreTunnelTimeout = setTimeout(function() {
 		if(tunnelId == 1 && questCounter == 0) {
 			questCounter++;
 			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');			
