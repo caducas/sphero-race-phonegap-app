@@ -27,6 +27,7 @@ socket.on('disconnect', function() {
 	// alert('disconnect: socket.socket.reconnect');
 	// socket.socket.reconnect();
 	alert('disconnect: socket.socket.connect');
+	location.reload();
 	// socket.socket.connect();
 	// socket = io.connect();
 });

@@ -17,6 +17,7 @@ var answersActivated = true;
 var alternateControl = false;
 var spheroControlActive = false;
 var fibreTunnelTimeout;
+var otherPlayerDisconnected = false;
 
 
 $(document).ready(function() {
@@ -46,6 +47,11 @@ $(document).ready(function() {
 			showMeantimes();
 		}
 
+		if(data.command === 'opponentLeftGame') {
+			otherPlayerDisconnected = true;
+			determineGameResult();
+		}
+
 		if(data.command === 'loadQuiz') {
 			quizQuestions = data.commandData;
 			startQuiz();
@@ -68,24 +74,27 @@ function resetGame() {
 	questCounter = 0;
 	meantimes = [];
 	meantimesOpponent = [];
+	otherPlayerDisconnected = false;
 	for(var i = 1; i<4; i++) {
 		$('#meantime_'+i).empty();
 		$('#meantime_'+i+'_difference').empty();
 	}
 	showMeantimes();
 	$('#stopwatch').hide();
+	$('#times').hide();
 }
 
 function raceFinished() {
 	stopStopWatch();
+	log('race finished');
 	determineGameResult();
 	setTimeout(function() {
 		stopSphero();
-	},200);
+	},500);
 }
 
 function determineGameResult() {
-	if(meantimes.length == 4 && meantimesOpponent.length == 4) {
+	if(meantimes.length == 4 && (meantimesOpponent.length == 4 || otherPlayerDisconnected == true)) {
 		hideAll();
 
 		$('#gameResult').empty();
@@ -137,6 +146,8 @@ function refreshCountdown() {
 
 function startStopWatch() {
 	$('#stopwatch').show();
+	log('race started');
+	$('#times').show();
 	document.getElementById('sound_beep_high').play();
 	offset = Date.now();
 	stopWatchInterval = setInterval(updateStopWatch, 1);
@@ -210,6 +221,7 @@ function fibreTunnelActive(tunnelId) {
 
 	if(tunnelId-1 == meantimes.length) {
 		meantimes.push(stopWatchTime);
+		log('tunnel ' + tunnelId + ' passed, meantime '+meantimes.length+':'+stopWatchTime);
 	}
 
 	sendMeantimesToOtherPlayer();
@@ -225,14 +237,17 @@ function fibreTunnelLeft(tunnelId) {
 	fibreTunnelTimeout = setTimeout(function() {
 		if(tunnelId == 1 && questCounter == 0) {
 			questCounter++;
+			log('loading quiz:Rechenaufgaben');
 			loadQuiz('Rechenaufgaben', 'Rechenaufgaben');			
 		}
 		if(tunnelId == 2 && questCounter == 1) {
 			questCounter++;
+			log('alternate Control: showing information');
 			activateAlternateControl();			
 		}
 		if(tunnelId == 3 && questCounter == 2) {
 			questCounter++;
+			log('loading quiz:Raetsel');
 			loadQuiz('Raetsel', 'R&auml;tsel');			
 		}
 		if(meantimes.length >= 4) {
@@ -350,6 +365,7 @@ function startQuiz(nameOfQuiz) {
 	setTimeout(function() {
 		hideAll();
 		$('#gameQuizScreen').show();
+		log('quiz started');
 	},2000);
 	//set quiz question to question 0
 	//randomly mix answers and write to answer buttons
@@ -379,6 +395,7 @@ function quizAnswer(buttonPressed) {
 		buttonPressed.addClass('wrong');
 		document.getElementById('sound_wrong').play();
 		deactivateAnswers();
+		log('quiz: wrong answer: '+answerText);
 		setTimeout(function() {
 			activateAnswers();
 		},500);
@@ -389,6 +406,7 @@ function quizAnswer(buttonPressed) {
 	buttonPressed.addClass('correct');
 	vibrate([200,200,200]);
 	deactivateAnswers();
+	log('quiz: correct answer: '+answerText);
 
 	if(quizQuestionCounter>=3) {
 		//continue race with delay (depending on wrong answers)
@@ -396,9 +414,10 @@ function quizAnswer(buttonPressed) {
 			hideAll();
 			if(quizAnswersWrongCounter == 0) {
 				$('#gameQuizResultCorrectScreen').show();
+				log('quiz: all correct, no penalty');
 				setTimeout(function() {
 					continueRace();
-				},1000);
+				},2000);
 				return;	
 			}
 
@@ -429,9 +448,10 @@ function activateAnswers() {
 }
 
 function startQuizResultCountdown(penalty) {
-	quizResultCountdown = penalty;
+	quizResultCountdown = penalty+2;
 	quizResultCountdownInterval = setInterval(updateQuizResultCountdown, 1000);
 	refreshQuizResultCountdown();
+	log('quiz: penalty: '+penalty+' seconds');
 }
 
 function updateQuizResultCountdown() {
@@ -462,6 +482,7 @@ function refreshQuizResultCountdown() {
 function continueRace() {
 	hideAll();
 	$('#gameScreen').show();
+	log('quiz: finished, sphero can be controlled again');
 }
 
 function getAllPossibleAnswersMixed(questionContainer) {
@@ -526,7 +547,8 @@ function activateAlternateControl() {
 		hideAll();
 		$('#gameScreen').show();
 		spheroControlActive = true;
-	},5000);
+		log('alternate Control: active now');
+	},10000);
 }
 
 function deactivateAlternateControl() {
@@ -545,6 +567,10 @@ function vibrate(duration) {
 	if(navigator.notification && navigator.nofitication.vibrate) {
 		navigator.notification.vibrate(duration);
 	}
+}
+
+function log(message) {
+	socket.emit('log', stopWatchTime + ': '+message);
 }
 
 $('#btnMeantimes').bind('click', function() {
