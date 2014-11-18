@@ -39,11 +39,11 @@ function getSpeed(x,y) {
   if(y === 0 && x === 0) {
     return 0;
   }
-  var speed = (Math.abs(y) + Math.abs(x))*2;
-  if(speed < 200) {
+  var speed = (Math.abs(y) + Math.abs(x))*3;
+  if(speed < 180) {
     return speed;
   }
-  return 200;
+  return 180;
 }
 
 
