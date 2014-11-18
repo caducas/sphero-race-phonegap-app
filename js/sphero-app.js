@@ -185,8 +185,8 @@ function stopCalibrationSphero2() {
 
 
 function handleOrientation(event) {
-  var x = event.beta/2;  // In degree in the range [-180,180]
-  var y = event.gamma; // In degree in the range [-90,90]
+  var x = event.beta/3.6;  // In degree in the range [-180,180]
+  var y = event.gamma/1.8; // In degree in the range [-90,90]
   var speedLimit = 50;
 
   if(alternateControl) {
