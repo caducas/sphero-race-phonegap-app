@@ -382,6 +382,7 @@ function setQuizQuestion(questionContainer) {
 		$(btnId).removeClass('wrong correct');
 		$(btnId).append('<span>'+answers[i]+'</span>');
 	}
+	log('quiz: new question: '+questionContainer.question);
 	activateAnswers();
 }
 
